@@ -47,9 +47,42 @@ clear
 echo "[3.] Installiere Nextcloud, MariaDB und den NGINX-Proxy-Manager mit Docker auf dem System..."
     sleep 2
     docker-compose up -d
-    clear
-    echo "[Installation] Fertig. Nun, öffne https://localhost:6200 im Browser und folge den Anweisungen. Außerdem wurde noch ein NGINX-Proxy-Manager aufgesetzt, welchen du unter https://localhost:81 erreichen kannst. Dort kannst du dein SSL Zertifikat generieren, sowie auch deine Domain direkt verbinden."
-    echo "[<3] Script made by L5ON"
-    sleep 4
+    sleep 3
+clear
+
+echo "[Installation] Fertig. Nun, öffne https://localhost:6200 im Browser und folge den Anweisungen. Außerdem wurde noch ein NGINX-Proxy-Manager aufgesetzt, welchen du unter https://localhost:81 erreichen kannst. Dort kannst du dein SSL Zertifikat generieren, sowie auch deine Domain direkt verbinden."
+echo "[<3] Script made by L5ON"
+    sleep 1
+    echo "15..."
+    sleep 1
+    echo "14..."
+    sleep 1
+    echo "13..."
+    sleep 1
+    echo "12..."
+    sleep 1
+    echo "11..."
+    sleep 1
+    echo "10..."
+    sleep 1
+    echo "9..."
+    sleep 1
+    echo "8..."
+    sleep 1
+    echo "7..."
+    sleep 1
+    echo "6..."
+    sleep 1
+    echo "5..."
+    sleep 1
+    echo "4..."
+    sleep 1
+    echo "3..."
+    sleep 1
+    echo "2..."
+    sleep 1
+    echo "1..."
+    sleep 1
+    echo "0..."
     clear
 exit
