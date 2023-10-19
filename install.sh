@@ -10,10 +10,11 @@ check_root() {
 }
 
 ## Installing needed packages (In this case, docker & docker-compose)
+clear
 echo "[1.] Installing needed packages..."
 sleep 2
-apt-get update -y
-apt-get install docker.io docker-compose -y
+sudo apt-get update -y
+sudo apt-get install docker.io docker-compose -y
 clear
 
 ## If UFW is installed on the system, we allow the needed ports for Nextcloud
@@ -26,11 +27,11 @@ then
     if [ "&add_rules" = "j" ]; then
             sleep 3
             ## Allowing the needed UFW Ports
-            ufw allow 80
-            ufw allow 443
-            ufw allow 81
-            ufw allow 6200
-            ufw allow 3306
+            sudo ufw allow 80
+            sudo ufw allow 443
+            sudo ufw allow 81
+            sudo ufw allow 6200
+            sudo ufw allow 3306
         echo "[!!] Die benötigten Ports für die Installation wurden erlaubt."
         sleep 1
     else
@@ -46,7 +47,7 @@ fi
 clear
 echo "[3.] Installiere Nextcloud, MariaDB und den NGINX-Proxy-Manager mit Docker auf dem System..."
     sleep 2
-    docker-compose up -d
+    sudo docker-compose up -d
     sleep 3
 clear
 
