@@ -1,0 +1,55 @@
+#/bin/bash
+
+## Check, if the user runned this script as root
+check_root() {
+    if [[ $EUID -ne 0 ]]; then
+        sleep 3
+        echo "This script must be run as root."
+        exit 1
+    fi
+}
+
+## Installing needed packages (In this case, docker & docker-compose)
+echo "[1.] Installing needed packages..."
+sleep 2
+apt-get update -y
+apt-get install docker.io docker-compose -y
+clear
+
+## If UFW is installed on the system, we allow the needed ports for Nextcloud
+echo "[2.] Checking, if UFW is installed on the system..."
+if command -v ufw &> /dev/null
+then
+    clear
+    echo "[?] Sollen die passenden Regeln für UFW freigegeben werden? (j/n)"
+    read add_rules
+    if [ "&add_rules" = "j" ]; then
+            sleep 3
+            ## Allowing the needed UFW Ports
+            ufw allow 80
+            ufw allow 443
+            ufw allow 81
+            ufw allow 6200
+            ufw allow 3306
+        echo "[!!] Die benötigten Ports für die Installation wurden erlaubt."
+        sleep 1
+    else
+        echo "[!!] Ein Fehler ist aufgetreten.."
+        sleep 3
+    fi
+else
+    echo "[!!] Es konnte keine Installation von UFW auf deinem System festgestellt werden."
+    sleep 2
+fi
+
+## Installing Nextcloud via Docker on the system
+clear
+echo "[3.] Installiere Nextcloud, MariaDB und den NGINX-Proxy-Manager mit Docker auf dem System..."
+    sleep 2
+    docker-compose up -d
+    clear
+    echo "[Installation] Fertig. Nun, öffne https://localhost:6200 im Browser und folge den Anweisungen. Außerdem wurde noch ein NGINX-Proxy-Manager aufgesetzt, welchen du unter https://localhost:81 erreichen kannst. Dort kannst du dein SSL Zertifikat generieren, sowie auch deine Domain direkt verbinden."
+    echo "[<3] Script made by L5ON"
+    sleep 4
+    clear
+exit
