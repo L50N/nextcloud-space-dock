@@ -4,7 +4,8 @@
 exec &>> /tmp/nextcloud-speed-installer.log
 
 ## Check, if the user runned this script as root
-if (( $EUID != 0 )); then
+if [ "$EUID" -ne 0 ]
+then
   echo " "
   then sleep 3 && echo "[!!] Please run as root"
   echo " "
@@ -38,9 +39,10 @@ then
             sudo ufw allow 3306
         echo "[!!] Die benötigten Ports für die Installation wurden erlaubt."
         sleep 1
-else
-    echo "[Info] Das Setzen von UFW Regeln abgebrochen."
-    sleep 2
+        else
+            echo "[Info] Das Setzen von UFW Regeln abgebrochen."
+            sleep 2
+fi
 
 ## Installing Nextcloud via Docker on the system
 clear
