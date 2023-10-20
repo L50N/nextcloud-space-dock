@@ -42,6 +42,10 @@ then
         else
             echo "[Info] Das Setzen von UFW Regeln abgebrochen."
             sleep 2
+        fi
+else
+echo "[Info] Das Setzen von UFW Regeln abgebrochen."
+sleep 2
 fi
 
 ## Installing Nextcloud via Docker on the system
