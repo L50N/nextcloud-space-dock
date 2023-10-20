@@ -5,13 +5,16 @@ exec &>> /tmp/nextcloud-speed-installer.log
 
 ## Check, if the user runned this script as root
 if [ "$EUID" -ne 0 ]
-  then sleep 3 && echo "Please run as root"
+  echo " "
+  then sleep 3 && echo "[!!] Please run as root"
+  echo " "
   exit
 fi
 
 ## Installing needed packages (In this case, docker & docker-compose)
 clear
 echo "[1.] Installing needed packages..."
+echo " "
 sleep 2
 sudo apt-get update -y
 sudo apt-get install docker.io docker-compose -y
@@ -23,6 +26,7 @@ if command -v ufw &> /dev/null
 then
     clear
     echo "[?] Sollen die passenden Regeln für UFW freigegeben werden? (j/n)"
+    echo " "
     read add_rules
     if [ "&add_rules" = "j" ]; then
             sleep 3
@@ -41,6 +45,7 @@ else
 ## Installing Nextcloud via Docker on the system
 clear
 echo "[3.] Installiere Nextcloud, MariaDB und den NGINX-Proxy-Manager mit Docker auf dem System..."
+echo " "
     sleep 2
     sudo docker-compose up -d
     sleep 5
