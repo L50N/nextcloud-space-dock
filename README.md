@@ -5,7 +5,7 @@ This repository contains a simple, script, that installed Nextcloud, MariaDB and
 ## Features 🖊️
 
 - UFW Firewall Support
-- Buildin Database
+- Builtin Database
 - Fast & Simple
 - Docker
 
