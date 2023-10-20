@@ -29,7 +29,7 @@ then
     echo "[?] Sollen die passenden Regeln für UFW freigegeben werden? (j/n)"
     echo " "
     read add_rules
-    if [ "&add_rules" = "j" ]; then
+    if [ "$add_rules" = "j" ]; then
             sleep 3
             ## Allowing the needed UFW Ports
             sudo ufw allow 80
@@ -59,7 +59,7 @@ clear
 
 ## Installation finished here
 clear
-echo "[Installation] Das Skript ist nun fertig. Nun, öffne http://localhost:6200 im Browser und folge den Anweisungen. Außerdem wurde noch ein NGINX-Proxy-Manager aufgesetzt, welchen du unter http://localhost:81 erreichen kannst. Dort kannst du dein SSL Zertifikat generieren, sowie auch deine Domain direkt verbinden."
+echo "[Installation] Das Skript ist nun fertig. Nun, öffne https://localhost:6200 im Browser und folge den Anweisungen. Außerdem wurde noch ein NGINX-Proxy-Manager aufgesetzt, welchen du unter https://localhost:81 erreichen kannst. Dort kannst du dein SSL Zertifikat generieren, sowie auch deine Domain direkt verbinden."
 echo " "
     sleep 1
     echo "Closing in 15 seconds..." && sleep 1 && echo " 15.." && sleep 1 && echo " 14.." && sleep 1 && echo " 13.." && sleep 1 && echo " 12.." && sleep 1 && echo " 11.." && sleep 1 && echo " 10.." && sleep 1 && echo " 9.." && sleep 1 && echo " 8.." && sleep 1 && echo " 7.." && sleep 1 && echo " 6.." && sleep 1 && echo " 5.." && sleep 1 && echo " 4.." && sleep 1 && echo " 3.." && sleep 1 && echo " 2.." && sleep 1 && echo " 1.." 
