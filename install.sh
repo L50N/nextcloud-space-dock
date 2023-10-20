@@ -7,7 +7,7 @@ exec &>> /tmp/nextcloud-speed-installer.log
 if [ "$EUID" -ne 0 ]
 then
   echo " "
-  then sleep 3 && echo "[!!] Please run as root"
+  sleep 3 && echo "[!!] Please run as root"
   echo " "
   exit
 fi
