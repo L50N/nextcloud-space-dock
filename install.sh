@@ -4,7 +4,7 @@
 exec &>> /tmp/nextcloud-speed-installer.log
 
 ## Check, if the user runned this script as root
-if [ "$EUID" -ne 0 ]
+if (( $EUID != 0 )); then
   echo " "
   then sleep 3 && echo "[!!] Please run as root"
   echo " "
