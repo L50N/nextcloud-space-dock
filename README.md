@@ -27,3 +27,8 @@ Before initiating launch sequence, ensure your command module (server) is equipp
 
 - `curl` for communication with remote space stations (retrieving necessary files)
 - A Debian or Debian-based operating system to maintain system compatibility and stability
+
+
+## 👾 Acknowledgments
+
+A project made by L5ON with ❤️
