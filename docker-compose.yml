@@ -34,17 +34,6 @@ services:
     ports:
       - "3306:3306"
 
-  app:
-    image: 'jc21/nginx-proxy-manager:latest'
-    restart: unless-stopped
-    ports:
-      - '80:80'
-      - '443:443'
-      - '81:81'
-    volumes:
-      - ./nginxproxymanager_data:/data
-      - ./letsencrypt_data:/etc/letsencrypt
-
 volumes:
   nextcloud_data:
   nextclouddb_data:
