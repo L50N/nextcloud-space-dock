@@ -25,6 +25,7 @@ The control panel is intuitive—just select the desired operation and let the s
 
 Before initiating launch sequence, ensure your command module (server) is equipped with:
 
+- Before initiating the cosmic setup, confirm that the system is devoid of Docker to prevent any unintended interstellar deletions. 
 - `curl` for communication with remote space stations (retrieving necessary files)
 - A Debian or Debian-based operating system to maintain system compatibility and stability
 
