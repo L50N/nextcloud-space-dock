@@ -1,42 +1,29 @@
-# Nextcloud Docker Manager 🚀
+# Nextcloud Space Dock 🌌
 
-This script is designed to make the management of Nextcloud within Docker seamless and straightforward. Whether you're looking to install, update, or maintain your Nextcloud instance, this tool provides a simplified command-line interface to do so.
+Welcome aboard the command center for managing your Nextcloud instance through the ease of Docker. Fasten your seatbelts as we embark on a journey to simplify cloud storage management.
 
-## Features ✨
+## 🛸 Features
 
-- Install Nextcloud with Docker 📦
-- Update Nextcloud containers with the latest images 🔄
-- Stop Nextcloud containers 🛑
-- Restart Nextcloud containers to refresh configurations ♻️
-- Remove Nextcloud and Docker components from your system 🗑️
+- Effortless Nextcloud setup
+- Swift updates with a single command
+- Easy start/stop controls for maintenance
+- Clean removal for a fresh start
 
-## Getting Started 🌟
+## 🌠 Getting Started
 
-To get started with Nextcloud Docker Manager, you need to have Docker and Docker Compose installed on your system.
+Begin your mission with these steps:
 
-1. Clone the repository or download the `nextcloud-manager.sh` script directly.
-2. Give the script execution permissions with `chmod +x nextcloud-manager.sh`.
-3. Run the script as root with `sudo ./nextcloud-manager.sh`.
+1. Ensure Docker and Docker Compose are installed on your vessel (your server).
+2. Download `space-dock.sh`, making it executable with `chmod +x space-dock.sh`.
+3. Run the command center with `sudo ./space-dock.sh` and follow the stellar prompts.
 
-## Usage 🛠️
+## 🚀 Usage
 
-Simply follow the on-screen prompts provided by the main menu after launching the script. Select the appropriate option by entering the corresponding number.
+The control panel is intuitive—just select the desired operation and let the script do the heavy lifting.
 
-## Prerequisites 📋
+## 🛰️ Prerequisites
 
-- Docker
-- Docker Compose
-- `curl` (for fetching the latest Docker Compose version)
+Before initiating launch sequence, ensure your command module (server) is equipped with:
 
-Make sure you have these installed before you attempt to use this script.
-
-## Contributing 🤝
-
-Contributions, issues, and feature requests are welcome! Feel free to check [issues page](#).
-
-## License 📄
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
-
-Another project made by L50N with ❤️
+- `curl` for communication with remote space stations (retrieving necessary files)
+- A Debian or Debian-based operating system to maintain system compatibility and stability
