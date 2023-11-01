@@ -1,20 +1,42 @@
-# Nextcloud SPEED Installer ☁️
+# Nextcloud Docker Manager 🚀
 
-This repository contains a simple, script, that installed Nextcloud, MariaDB and NGINX Proxy Manager with Docker & Docker Compose.
+This script is designed to make the management of Nextcloud within Docker seamless and straightforward. Whether you're looking to install, update, or maintain your Nextcloud instance, this tool provides a simplified command-line interface to do so.
 
-## Features 🖊️
+## Features ✨
 
-- UFW Firewall Support
-- Builtin Database
-- Fast & Simple
+- Install Nextcloud with Docker 📦
+- Update Nextcloud containers with the latest images 🔄
+- Stop Nextcloud containers 🛑
+- Restart Nextcloud containers to refresh configurations ♻️
+- Remove Nextcloud and Docker components from your system 🗑️
+
+## Getting Started 🌟
+
+To get started with Nextcloud Docker Manager, you need to have Docker and Docker Compose installed on your system.
+
+1. Clone the repository or download the `nextcloud-manager.sh` script directly.
+2. Give the script execution permissions with `chmod +x nextcloud-manager.sh`.
+3. Run the script as root with `sudo ./nextcloud-manager.sh`.
+
+## Usage 🛠️
+
+Simply follow the on-screen prompts provided by the main menu after launching the script. Select the appropriate option by entering the corresponding number.
+
+## Prerequisites 📋
+
 - Docker
+- Docker Compose
+- `curl` (for fetching the latest Docker Compose version)
 
-## Usage 👍
+Make sure you have these installed before you attempt to use this script.
 
-1. Clone this repository or download it.
-2. Replace the passwords in the docker-compose.yml
-3. $ (sudo) chmod +x installer.sh && (sudo) chmod +x remove.sh
-4. $ (sudo) ./installer.sh
-5. Go to http://localhost:6200 and create a admin account
+## Contributing 🤝
 
-A project made by L5ON with ❤️
+Contributions, issues, and feature requests are welcome! Feel free to check [issues page](#).
+
+## License 📄
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+
+Another project made by L50N with ❤️
