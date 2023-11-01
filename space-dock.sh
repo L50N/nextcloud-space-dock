@@ -45,6 +45,11 @@ display_menu() {
 install_nextcloud() {
     echo "[Phase 1] Deploying Nextcloud into the Cosmos"
     
+# Remove if already installed in system...
+apt-get purge docker.io docker-compose -y
+    apt-get autoremove -y
+    
+
     # Install Docker & Docker Compose
     echo "Installing Docker Engine... 🐳"
     curl -fsSL https://get.docker.com | sh
