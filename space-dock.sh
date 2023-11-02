@@ -92,7 +92,7 @@ remove_nextcloud() {
     docker-compose down -v
     
     # Expel Docker & Docker Compose from the airlock
-    apt-get purge docker.io docker-compose -y
+    apt-get purge docker.io docker-compose docker-ce docker-ce-cli docker-compose-plugin docker-ce-rootless-extras docker-buildx-plugin containerd.io -y
     apt-get autoremove -y
     echo "The ship has been scrubbed clean!"
 }
