@@ -42,6 +42,10 @@ display_menu() {
 install_nextcloud() {
     echo "[Phase 1] Deploying Nextcloud into the Cosmos"
 
+    # Install CURL, if not present on the system
+    echo "Installing CURL for communication with remote space stations..."
+    apt-get install curl -y
+
     # Install Docker & Docker Compose
     echo "Installing Docker Engine... 🐳"
     curl -fsSL https://get.docker.com | sh
