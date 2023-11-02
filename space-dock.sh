@@ -89,7 +89,7 @@ remove_nextcloud() {
     echo "[Phase 5] De-orbiting Nextcloud and Engaging Cleanup Crew"
     
     # Remove all Docker Containers and Images
-    docker-compose down
+    docker-compose down -v
     
     # Expel Docker & Docker Compose from the airlock
     apt-get purge docker.io docker-compose -y
