@@ -34,7 +34,7 @@ display_menu() {
     echo "5. Remove Everything (including Docker & Docker Compose)"
     echo "6. Update Nextcloud"
     echo "7. Exit Control Panel"
-    echo -e "\nMake your selection and press [ENTER]:"
+    echo -e "\nMake your selection and press [ENTER]: "
     read -r choice
 }
 
@@ -59,6 +59,15 @@ apt-get purge docker.io docker-compose -y
     # Launch Nextcloud
     docker-compose up -d
     echo "Nextcloud is now orbiting at localhost!"
+}
+
+# Update the ship's systems
+start_containers() {
+    echo "[Phase 2] Starting the Ship's Systems"
+    
+    # Launch the ship
+    docker-compose up -d
+    echo "Starting completed. Nextcloud now is ready to control!"
 }
 
 # Halt all systems
@@ -102,15 +111,6 @@ update_nextcloud() {
     # Relaunch the ship
     docker-compose up -d
     echo "Update complete. Nextcloud is now equipped with the latest tech!"
-}
-
-# Update the ship's systems
-start_containers() {
-    echo "[Phase 2] Starting the Ship's Systems"
-    
-    # Launch the ship
-    docker-compose up -d
-    echo "Starting completed. Nextcloud now is ready to control!"
 }
 
 
