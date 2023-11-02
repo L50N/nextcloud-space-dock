@@ -8,14 +8,10 @@ if [ "$EUID" -ne 0 ]; then
     exit
 fi
 
-# Log File Location - The ship's black box recording everything
-LOG_FILE="/tmp/nextcloud-speed-installer.log"
-exec &>> "$LOG_FILE"
-
 # A beautiful ASCII spaceship
 display_ascii_art() {
     echo "Launching Nextcloud Installation Sequence 🚀"
-echo " "
+echo
 echo "            |"
 echo "           / \ "
 echo "          / _ \ "
@@ -25,18 +21,19 @@ echo "         |     |"
 echo "       ,'|  |  |'."
 echo "      /  |  |  |  \ "
 echo "      |,-'--|--'-.|"
-echo " "
+echo
 }
 
 # Command Module (Main Menu)
 display_menu() {
     echo -e "\nCommand Module:"
     echo "1. Install Nextcloud"
-    echo "2. Stop Containers"
-    echo "3. Restart Containers"
-    echo "4. Remove Everything (including Docker & Docker Compose)"
-    echo "5. Update Nextcloud"
-    echo "6. Exit Control Panel"
+    echo "2. Start Containers"
+    echo "3. Stop Containers"
+    echo "4. Restart Containers"
+    echo "5. Remove Everything (including Docker & Docker Compose)"
+    echo "6. Update Nextcloud"
+    echo "7. Exit Control Panel"
     echo -e "\nMake your selection and press [ENTER]:"
     read -r choice
 }
@@ -66,14 +63,14 @@ apt-get purge docker.io docker-compose -y
 
 # Halt all systems
 stop_containers() {
-    echo "[Phase 2] Initiating System Shutdown"
+    echo "[Phase 3] Initiating System Shutdown"
     docker-compose down
     echo "Containers are now in stasis mode."
 }
 
 # Reboot the habitat modules
 restart_containers() {
-    echo "[Phase 3] Rebooting Space Habitat Modules"
+    echo "[Phase 4] Rebooting Space Habitat Modules"
     docker-compose down
     docker-compose up -d
     echo "Containers are now awakening from stasis mode."
@@ -81,7 +78,7 @@ restart_containers() {
 
 # De-orbit the entire station
 remove_nextcloud() {
-    echo "[Phase 4] De-orbiting Nextcloud and Engaging Cleanup Crew"
+    echo "[Phase 5] De-orbiting Nextcloud and Engaging Cleanup Crew"
     
     # Remove all Docker Containers and Images
     docker-compose down
@@ -94,7 +91,7 @@ remove_nextcloud() {
 
 # Update the ship's systems
 update_nextcloud() {
-    echo "[Phase 5] Updating the Ship's Systems"
+    echo "[Phase 6] Updating the Ship's Systems"
     
     # Ensure no passengers are aboard during update
     docker-compose down
@@ -107,6 +104,16 @@ update_nextcloud() {
     echo "Update complete. Nextcloud is now equipped with the latest tech!"
 }
 
+# Update the ship's systems
+start_containers() {
+    echo "[Phase 2] Starting the Ship's Systems"
+    
+    # Launch the ship
+    docker-compose up -d
+    echo "Starting completed. Nextcloud now is ready to control!"
+}
+
+
 # Infinite loop to keep the script running
 while true; do
     clear
@@ -115,11 +122,12 @@ while true; do
     
     case "$choice" in
         1) install_nextcloud;;
-        2) stop_containers;;
-        3) restart_containers;;
-        4) remove_nextcloud;;
-        5) update_nextcloud;;
-        6) echo "Safe travels, Astronaut!"; exit 0;;
+        2) start_containers;;
+        3) stop_containers;;
+        4) restart_containers;;
+        5) remove_nextcloud;;
+        6) update_nextcloud;;
+        7) echo "Safe travels, Astronaut!"; exit 0;;
         *) echo "Uh oh! That's an alien command 🛸";;
     esac
     echo "Press any key to navigate back to the Command Module..."
