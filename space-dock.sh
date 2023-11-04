@@ -68,7 +68,7 @@ install_nextcloud() {
     fi
     
     if [ -f "./docker-compose.yml" ]; then
-        docker-compose up -d
+        docker compose up -d
         echo "Nextcloud is now floating in the digital ether at localhost!"
     else
         echo "Abort! Abort! The docker-compose.yml is missing from the launchpad."
@@ -78,19 +78,19 @@ install_nextcloud() {
 
 start_containers() {
     echo "[Phase 2] Warp drives engaging... 🌟"
-    docker-compose up -d
+    docker compose up -d
     echo "Containers have jumped to hyperspace!"
 }
 
 stop_containers() {
     echo "[Phase 3] All personnel to cryosleep chambers..."
-    docker-compose down
+    docker compose down
     echo "Containers are now in hibernation mode."
 }
 
 remove_nextcloud() {
     echo "[Phase 5] Initiating self-destruct sequence..."
-    docker-compose down -v
+    docker compose down -v
     echo "Purging all traces of Docker and its crew..."
     apt-get purge docker.io docker-compose docker-ce docker-ce-cli docker-compose-plugin docker-ce-rootless-extras docker-buildx-plugin containerd.io -y
     apt-get autoremove -y
@@ -99,9 +99,9 @@ remove_nextcloud() {
 
 update_nextcloud() {
     echo "[Phase 6] Updating galactic charts and Nextcloud systems..."
-    docker-compose down
-    docker-compose pull
-    docker-compose up -d
+    docker compose down
+    docker compose pull
+    docker compose up -d
     echo "The update is complete. Nextcloud is now at the latest stellar revision!"
 }
 
