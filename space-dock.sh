@@ -7,6 +7,17 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
 fi
 
+check_galactic_position() {
+    if ! command -v apt > /dev/null; then
+        echo "Interstellar mismatch: Your spaceship does not seem to be Debian-based."
+        echo "The Moon Central Command requires 'apt' to proceed with the mission."
+        exit 1
+    fi
+}
+
+## Check for Debian based system
+check_galactic_position
+
 display_ascii_art() {
     cat << "EOF"
     Launching Nextcloud Installation Sequence 🚀
