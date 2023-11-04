@@ -43,7 +43,7 @@ display_menu() {
     echo "[4] Remove Everything (including Docker & Docker Compose)"
     echo "[5] Update Nextcloud"
     echo "[6] Exit Control Panel"
-    echo -e "\nSelect your command and press the big red button [ENTER]: "
+    echo
     read -rp "captain@bridge:~$ " choice
 }
 
