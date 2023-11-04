@@ -1,134 +1,113 @@
 #!/bin/bash
 
-# Stellar Nextcloud Speed Installer
+## Made by L50N with <3
 
-# Engage thrusters if we have root clearance
-if [ "$EUID" -ne 0 ]; then
-    echo "Permission Denied: Please run as the root overlord."
-    exit
+if [[ $EUID -ne 0 ]]; then
+    echo "Permission Denied: Please run as the Galactic Root Commander."
+    exit 1
 fi
 
-# A beautiful ASCII spaceship
 display_ascii_art() {
-    echo "Launching Nextcloud Installation Sequence 🚀"
-echo
-echo "            |"
-echo "           / \ "
-echo "          / _ \ "
-echo "         |     |"
-echo "         |'._.'|"
-echo "         |     |"
-echo "       ,'|  |  |'."
-echo "      /  |  |  |  \ "
-echo "      |,-'--|--'-.|"
-echo
+    cat << "EOF"
+    Launching Nextcloud Installation Sequence 🚀
+
+                |
+               / \
+              / _ \
+             |     |
+             |'._.'|
+             |     |
+           ,'|  |  |'.
+          /  |  |  |  \
+          |,-'--|--'-,|
+
+EOF
 }
 
-# Command Module (Main Menu)
 display_menu() {
-    echo -e "\nCommand Module:"
-    echo "1. Install Nextcloud"
-    echo "2. Start Containers"
-    echo "3. Stop Containers"
-    echo "4. Restart Containers"
-    echo "5. Remove Everything (including Docker & Docker Compose)"
-    echo "6. Update Nextcloud"
-    echo "7. Exit Control Panel"
-    echo -e "\nMake your selection and press [ENTER]: "
-    read -r choice
+    echo -e "\nNextcloud Command Module at your service, Captain:"
+    echo "[1] Install Nextcloud"
+    echo "[2] Start Containers"
+    echo "[3] Stop Containers"
+    echo "[4] Remove Everything (including Docker & Docker Compose)"
+    echo "[5] Update Nextcloud"
+    echo "[6] Exit Control Panel"
+    echo -e "\nSelect your command and press the big red button [ENTER]: "
+    read -rp "captain@bridge:~$ " choice
 }
 
-# Installation Protocol
 install_nextcloud() {
-    echo "[Phase 1] Deploying Nextcloud into the Cosmos"
+    echo "[Phase 1] Preparing for lift-off: Deploying Nextcloud into the Cosmos"
 
-    # Install CURL, if not present on the system
-    echo "Installing CURL for communication with remote space stations..."
-    apt-get install curl -y
+    if ! command -v curl &>/dev/null; then
+        echo "Installing CURL for interstellar communication... 📡"
+        apt-get update && apt-get install -y curl
+    fi
 
-    # Install Docker & Docker Compose
-    echo "Installing Docker Engine... 🐳"
-    curl -fsSL https://get.docker.com | sh
+    echo "Installing the Docker Engine, the heart of our spaceship... 🚀"
+    if ! command -v docker &>/dev/null; then
+        curl -fsSL https://get.docker.com | sh
+    fi
+
+    echo "Installing Docker Compose to navigate the stars... 🌌"
+    if ! command -v docker-compose &>/dev/null; then
+        COMPOSE_VERSION=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep 'tag_name' | cut -d\" -f4)
+        curl -L "https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+        chmod +x /usr/local/bin/docker-compose
+    fi
     
-    echo "Installing the latest version of Docker Compose... 🌌"
-    COMPOSE_VERSION=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep 'tag_name' | cut -d\" -f4)
-    curl -L "https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-    chmod +x /usr/local/bin/docker-compose
-    
-    # Launch Nextcloud
-    docker-compose up -d
-    echo "Nextcloud is now orbiting at localhost!"
+    if [ -f "./docker-compose.yml" ]; then
+        docker-compose up -d
+        echo "Nextcloud is now floating in the digital ether at localhost!"
+    else
+        echo "Abort! Abort! The docker-compose.yml is missing from the launchpad."
+        exit 1
+    fi
 }
 
-# Update the ship's systems
 start_containers() {
-    echo "[Phase 2] Starting the Ship's Systems"
-    
-    # Launch the ship
+    echo "[Phase 2] Warp drives engaging... 🌟"
     docker-compose up -d
-    echo "Starting completed. Nextcloud now is ready to control!"
+    echo "Containers have jumped to hyperspace!"
 }
 
-# Halt all systems
 stop_containers() {
-    echo "[Phase 3] Initiating System Shutdown"
+    echo "[Phase 3] All personnel to cryosleep chambers..."
     docker-compose down
-    echo "Containers are now in stasis mode."
+    echo "Containers are now in hibernation mode."
 }
 
-# Reboot the habitat modules
-restart_containers() {
-    echo "[Phase 4] Rebooting Space Habitat Modules"
-    docker-compose down
-    docker-compose up -d
-    echo "Containers are now awakening from stasis mode."
-}
-
-# De-orbit the entire station
 remove_nextcloud() {
-    echo "[Phase 5] De-orbiting Nextcloud and Engaging Cleanup Crew"
-    
-    # Remove all Docker Containers and Images
+    echo "[Phase 5] Initiating self-destruct sequence..."
     docker-compose down -v
-    
-    # Expel Docker & Docker Compose from the airlock
+    echo "Purging all traces of Docker and its crew..."
     apt-get purge docker.io docker-compose docker-ce docker-ce-cli docker-compose-plugin docker-ce-rootless-extras docker-buildx-plugin containerd.io -y
     apt-get autoremove -y
-    echo "The ship has been scrubbed clean!"
+    echo "The ship is now a ghost, lost in the cosmos."
 }
 
-# Update the ship's systems
 update_nextcloud() {
-    echo "[Phase 6] Updating the Ship's Systems"
-    
-    # Ensure no passengers are aboard during update
+    echo "[Phase 6] Updating galactic charts and Nextcloud systems..."
     docker-compose down
-    
-    # Update the ship's blueprints
     docker-compose pull
-    
-    # Relaunch the ship
     docker-compose up -d
-    echo "Update complete. Nextcloud is now equipped with the latest tech!"
+    echo "The update is complete. Nextcloud is now at the latest stellar revision!"
 }
 
-
-# Infinite loop to keep the script running
 while true; do
     clear
     display_ascii_art
     display_menu
-    
-    case "$choice" in
+
+    case $choice in
         1) install_nextcloud;;
         2) start_containers;;
         3) stop_containers;;
-        4) restart_containers;;
-        5) remove_nextcloud;;
-        6) update_nextcloud;;
-        7) echo "Safe travels, Astronaut!"; exit 0;;
-        *) echo "Uh oh! That's an alien command 🛸";;
+        4) remove_nextcloud;;
+        5) update_nextcloud;;
+        6) echo "Docking complete. Enjoy your time on the spaceport!"; exit 0;;
+        *) echo "Unidentified command! Is that an alien language? 🛸";;
     esac
-    echo "Press any key to navigate back to the Command Module..."
+    echo "Press any key to warp back to the Command Module..."
     read -r -n 1
 done
